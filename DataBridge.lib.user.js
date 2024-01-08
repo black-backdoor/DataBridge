@@ -2,7 +2,7 @@
 const DataBridge = (function () {
     function info() {
         const name = "DataBridge";
-        const version = "1.2.0";
+        const version = "1.2.1";
         const author = "black-backdoor";
         const description = "DataBridge is a library for communication between scripts";
         const homepage = "https://github.com/black-backdoor/DataBridge/";
@@ -105,10 +105,8 @@ class Connection {
 
     send(message) {
         // Add protocol version and sender to the message header
-        message.header = {
-            sender: GMinfo.script.name,
-            protocolVersion: "1.0",
-        };
+        message.header.sender = message.header.sender || GMinfo.script.name;
+        message.header.protocolVersion = message.header.protocolVersion || "1.0";
 
         // Check if the message is valid; if not, warn
         if (!Protocol.verifyMessage(message)) {
