@@ -1,3 +1,4 @@
+// Library Info
 const DataBridge = (function () {
     function info() {
         const name = "DataBridge";
@@ -14,26 +15,75 @@ const DataBridge = (function () {
         };
     }
 
+    function checkRequirements(){
+        // Check if the script is running in a browser environment
+        if (typeof window === "undefined") {
+            throw new Error("DataBridge: Script is not running in a browser environment | window is undefined");
+        }
+
+        // Check if the script is running in a userscript manager environment
+        if (typeof GMinfo === "undefined") {
+            throw new Error("DataBridge: Script is not running in a userscript manager environment | GMinfo is undefined");
+        }
+    }
+
     return {
-        info: info
+        info: info,
+        checkRequirements: checkRequirements,
     };
 }) ();
 
+
+// ########### SCRIPT INFO ###########
 const GMinfo = GM_info ?? GM?.info ?? (() => {});  // Get GM_info from either GM.info or GM_info or return an empty object
 
 const ScriptInfo  = {
     name: GMinfo?.script?.name || undefined,
+    namespace: GMinfo?.script?.namespace || undefined,
+    description: GMinfo?.script?.description || undefined,
+
     version: GMinfo?.script?.version || undefined,
+    permissions: GMinfo?.script?.grant || undefined,
+
     run_at: GMinfo?.script?.runAt || GMinfo?.script?.options?.run_at || undefined,
     scriptWillUpdate: GMinfo?.scriptWillUpdate || GMinfo?.script?.options?.check_for_updates || undefined,
 
-    // URLs
+    isFirstPartyIsolation: GMinfo?.isFirstPartyIsolation || undefined,
+    injectInto: GMinfo?.injectInto || undefined,
+    sandboxMode: GMinfo?.sandboxMode || undefined,
+    sandbox: GMinfo?.script?.options?.sandbox || undefined,
+
+    // SCRIPT URLs
     downloadURL: GMinfo?.script?.downloadURL || undefined,
     updateURL: GMinfo?.script?.updateURL || undefined,
-    
-    permissions: GMinfo?.script?.grant || undefined,
 };
 
+// ########### BROWSER INFO ###########
+const browser = {
+    browserName: GMinfo?.platform?.browserName,
+    browserVersion: GMinfo?.platform?.browserVersion,
+    os: GMinfo?.platform?.os || navigator?.userAgentData?.platform || navigator?.userAgent?.platform,
+
+    language: navigator?.language || undefined,
+    languages: navigator?.languages || undefined,
+
+    userAgent: navigator?.userAgent || undefined,
+    userAgentData: navigator?.userAgentData || undefined,
+
+    isIncognito: GMinfo?.isIncognito || undefined,
+    cookiesEnabled: navigator?.cookieEnabled || undefined,
+    online: navigator?.onLine || undefined,
+};
+
+// ########### SCRIPTHANDLER INFO ###########
+const scriptHandler = {
+    scriptHandler: GMinfo?.scriptHandler || undefined,
+    scriptHandlerVersion: GMinfo?.version || undefined,
+};
+
+// ####################################################################################################
+
+// CONNECTION
 class Connection {
     static channelTypes = {
         Window: "Window",
@@ -45,6 +95,7 @@ class Connection {
         this.channelName = channelName;
         this.channelType = channelType;
 
+        DataBridge.checkRequirements();
         defaultProtocol.init(this);
     }
 
@@ -120,6 +171,10 @@ const defaultProtocol = (function () {
                 connection.send(pongMessage);
             }
         });
+
+        /*
+            pingID is used to identify the PING request
+        */
     }
 
     function init(connection) {
