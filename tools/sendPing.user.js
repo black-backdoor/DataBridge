@@ -10,7 +10,7 @@
 // ==/UserScript==
 
 // create connection
-const globalConnection = new Connection("LOCAL-BRIDGE", Connection.channelTypes.LOCAL);
+const globalConnection = new Connection("Window-BRIDGE", Connection.channelTypes.Window);
 
 // register protocol
 SystemProtocol.init(globalConnection);
