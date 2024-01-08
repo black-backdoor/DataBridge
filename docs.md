@@ -85,12 +85,9 @@ connection.send({
         sender: "SenderScript",
         receiver: "ReceiverScript",
         protocolVersion: "1.0",
-        messageType: "EVENT",
+        messageType: "CREATE-YOUR-OWN-TYPE",
     },
-    body: {
-        eventName: "EventName",
-        detail: "EventDetails",
-    },
+    body: "what-ever-you-want-(every-datatype)",
 });
 ```
 
