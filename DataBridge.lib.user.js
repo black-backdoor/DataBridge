@@ -1,10 +1,10 @@
 const DataBridge = (function () {
     function info() {
         const name = "DataBridge";
-        const version = "1.0.0";
+        const version = "1.1.0";
         const author = "black-backdoor";
         const description = "DataBridge is a library for communication between scripts";
-        const homepage = "";
+        const homepage = "https://github.com/black-backdoor/DataBridge/";
         return {
             name: name,
             version: version,
@@ -37,11 +37,11 @@ const ScriptInfo  = {
 
 class Connection {
     static channelTypes = {
-        LOCAL: "LOCAL",
+        Window: "Window",
     };
 
     constructor(channelName, channelType) {
-        if (channelType === undefined) channelType = Connection.channelTypes.LOCAL;
+        if (channelType === undefined) channelType = Connection.channelTypes.Window;
 
         this.channelName = channelName;
         this.channelType = channelType;
