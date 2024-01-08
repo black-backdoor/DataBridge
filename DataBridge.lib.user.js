@@ -2,7 +2,7 @@
 const DataBridge = (function () {
     function info() {
         const name = "DataBridge";
-        const version = "1.2.1";
+        const version = "1.3.0";
         const author = "black-backdoor";
         const description = "DataBridge is a library for communication between scripts";
         const homepage = "https://github.com/black-backdoor/DataBridge/";
@@ -235,5 +235,28 @@ const Protocol = (function () {
         dispatchEvent: dispatchEvent,
         registerEvent: registerEvent,
         registerMessageType: registerMessageType,
+    };
+})();
+
+const Tools = (function () {
+    function PING(connection, receiver) {
+        const pingID = Math.random();
+        const pingMessage = {
+            "header": {
+                receiver: receiver,
+                messageType: "PING",
+                
+            },
+            "body": {
+                request: "PING",
+                pingID: pingID
+            }
+                
+        };
+        connection.send(pingMessage);
+    }
+
+    return {
+        PING: PING,
     };
 })();
