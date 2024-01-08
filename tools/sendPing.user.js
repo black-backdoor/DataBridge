@@ -12,4 +12,4 @@
 // create connection
 const globalConnection = new Connection("Window-BRIDGE", Connection.channelTypes.Window);
 
-// Tools.PING(globalConnection, "*");
+Tools.PING(globalConnection, "*");
