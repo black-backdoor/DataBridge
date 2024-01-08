@@ -3,7 +3,7 @@ DataBridge is a library for communication between scripts
 
 
 ## Todo
-- [ ] Write documentation
+- [x] Write documentation
 - [ ] Check for required script permissions and use alternatives if permissions are not granted
 - [ ] Allow for cross-window communication (using GM_setValue or local storage)
 - [ ] Enable same-origin communication with local storage
