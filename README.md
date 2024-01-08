@@ -11,7 +11,7 @@ DataBridge is a library for communication between scripts
 
 ## ToDo
 Connection Types
-- [ ] Window (events)
+- [x] Window (events)
 - [ ] CrossWindow | LocalStorage & GM Storage
 - [ ] SameOrigin | LocalStorage & GM Storage
 - [ ] CrossOrigin | GM Storage
