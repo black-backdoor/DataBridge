@@ -89,13 +89,12 @@ class Connection {
         Window: "Window",
     };
 
-    constructor(channelName, channelType) {
-        /**
-         * Constructor for the Connection class.
-         * @param {string} channelName - The name of the communication channel.
-         * @param {string} channelType - The type of communication channel (default is Window).
-         */
-        
+    /**
+     * Constructor for the Connection class.
+     * @param {string} channelName - The name of the communication channel.
+     * @param {string} channelType - The type of communication channel (default is Window).
+     */
+    constructor(channelName, channelType) {       
         // Set default channel type if not provided
         if (channelType === undefined) channelType = Connection.channelTypes.Window;
 
@@ -110,20 +109,21 @@ class Connection {
         defaultProtocol.init(this);
     }
 
+
+    /**
+     * Get the channel name associated with the connection.
+     * @returns {string} - The channel name.
+     */
     getChannelName() {
-        /**
-         * Get the channel name associated with the connection.
-         * @returns {string} - The channel name.
-         */
         return this.channelName;
     }
 
-    send(message) {
-        /**
-         * Send a message through the connection.
-         * @param {object} message - The message to be sent.
-         */
 
+    /**
+     * Send a message through the connection.
+     * @param {object} message - The message to be sent.
+     */
+    send(message) {
         // Add protocol version and sender to the message header
         message.header.sender = message.header.sender || GMinfo.script.name;
         message.header.protocolVersion = message.header.protocolVersion || "1.0";
@@ -138,12 +138,12 @@ class Connection {
         document.dispatchEvent(event);
     }
 
-    receive(callback) {
-        /**
-         * Set up a callback to receive messages.
-         * @param {function} callback - The callback function to handle received messages.
-         */
-        
+
+    /**
+     * Set up a callback to receive messages.
+     * @param {function} callback - The callback function to handle received messages.
+     */
+    receive(callback) {       
         // Check if the callback is valid; if not, warn
         if (!callback || typeof callback !== "function") {
             console.warn("Invalid callback function provided");
@@ -165,12 +165,12 @@ class Connection {
         });
     }
 
-    debugMessageHook(callback) {
-        /**
-         * Set up a callback for debugging purposes without validating the message.
-         * @param {function} callback - The callback function to handle messages.
-         */
-        
+
+    /**
+     * Set up a callback for debugging purposes without validating the message.
+     * @param {function} callback - The callback function to handle messages.
+     */
+    debugMessageHook(callback) {       
         document.addEventListener(this.channelName, (event) => {
             const message = event.detail;
             callback(message);
@@ -212,6 +212,8 @@ const defaultProtocol = (function () {
         init: init,
     };
 })();
+
+
 
 const Protocol = (function () {
     function verifyMessage(message) {
