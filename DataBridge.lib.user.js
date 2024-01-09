@@ -90,20 +90,40 @@ class Connection {
     };
 
     constructor(channelName, channelType) {
+        /**
+         * Constructor for the Connection class.
+         * @param {string} channelName - The name of the communication channel.
+         * @param {string} channelType - The type of communication channel (default is Window).
+         */
+        
+        // Set default channel type if not provided
         if (channelType === undefined) channelType = Connection.channelTypes.Window;
 
+        // Initialize properties
         this.channelName = channelName;
         this.channelType = channelType;
 
+        // Check requirements
         DataBridge.checkRequirements();
+        
+        // Initialize default protocol
         defaultProtocol.init(this);
     }
 
     getChannelName() {
+        /**
+         * Get the channel name associated with the connection.
+         * @returns {string} - The channel name.
+         */
         return this.channelName;
     }
 
     send(message) {
+        /**
+         * Send a message through the connection.
+         * @param {object} message - The message to be sent.
+         */
+
         // Add protocol version and sender to the message header
         message.header.sender = message.header.sender || GMinfo.script.name;
         message.header.protocolVersion = message.header.protocolVersion || "1.0";
@@ -119,6 +139,11 @@ class Connection {
     }
 
     receive(callback) {
+        /**
+         * Set up a callback to receive messages.
+         * @param {function} callback - The callback function to handle received messages.
+         */
+        
         // Check if the callback is valid; if not, warn
         if (!callback || typeof callback !== "function") {
             console.warn("Invalid callback function provided");
@@ -141,7 +166,11 @@ class Connection {
     }
 
     debugMessageHook(callback) {
-        // Different than receive, this function will not check if the message is valid
+        /**
+         * Set up a callback for debugging purposes without validating the message.
+         * @param {function} callback - The callback function to handle messages.
+         */
+        
         document.addEventListener(this.channelName, (event) => {
             const message = event.detail;
             callback(message);
