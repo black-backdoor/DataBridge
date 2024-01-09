@@ -59,7 +59,7 @@ const ScriptInfo  = {
 };
 
 // ########### BROWSER INFO ###########
-const browser = {
+const BrowserInfo = {
     browserName: GMinfo?.platform?.browserName,
     browserVersion: GMinfo?.platform?.browserVersion,
     os: GMinfo?.platform?.os || navigator?.userAgentData?.platform || navigator?.userAgent?.platform,
@@ -76,7 +76,7 @@ const browser = {
 };
 
 // ########### SCRIPTHANDLER INFO ###########
-const scriptHandler = {
+const ScriptHandlerInfo = {
     scriptHandler: GMinfo?.scriptHandler || undefined,
     scriptHandlerVersion: GMinfo?.version || undefined,
 };
