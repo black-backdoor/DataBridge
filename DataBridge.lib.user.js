@@ -215,21 +215,41 @@ const defaultProtocol = (function () {
 
 
 
+/**
+ * The Protocol module provides functions for message verification, message registration, event dispatching, and event registration.
+ * @namespace Protocol
+ */
 const Protocol = (function () {
+    /**
+     * Verifies if a message has the required headers.
+     * @param {object} message - The message to be verified.
+     * @returns {boolean} - Returns true if the message is valid, false otherwise.
+     */
     function verifyMessage(message) {
-        const expectedHeaders = ["sender", "receiver", "protocolVersion", "messageType"];
+        try {
+            const expectedHeaders = ["sender", "receiver", "protocolVersion", "messageType"];
 
-        // check if message has header
-        if (!message.hasOwnProperty("header")) return false;
+            // check if message has header
+            if (!message.hasOwnProperty("header")) return false;
 
-        // check if header has all expected header keys
-        const headerKeysExist = expectedHeaders.every(key => message.header.hasOwnProperty(key));
-        if (!headerKeysExist) return false;
+            // check if header has all expected header keys
+            const headerKeysExist = expectedHeaders.every(key => message.header.hasOwnProperty(key));
+            if (!headerKeysExist) return false;
 
-        return true;
+            return true;
+        } catch (error) {
+            console.warn(error);
+            return false;
+        }
     }
 
 
+    /**
+     * Registers a message type and sets a callback function to be executed when a message of that type is received.
+     * @param {object} connection - The connection object.
+     * @param {string} messageType - The type of message to register.
+     * @param {function} callback - The callback function to be executed when a message of the specified type is received.
+     */
     function registerMessageType (connection, messageType, callback){
         connection.receive((message) => {
             if (message.header.messageType == messageType) {
@@ -238,6 +258,14 @@ const Protocol = (function () {
         });
     }
     
+
+    /**
+     * Dispatches an event with the specified event name and detail to the specified receiver.
+     * @param {object} connection - The connection object.
+     * @param {string} eventName - The name of the event to dispatch.
+     * @param {any} detail - The detail of the event.
+     * @param {string} receiver - The receiver of the event.
+     */
     function dispatchEvent (connection, eventName, detail, reciever){
         const message = {
             "header": {
@@ -252,7 +280,14 @@ const Protocol = (function () {
 
         connection.send(message);
     }
+    
 
+    /**
+     * Registers an event and sets a callback function to be executed when an event with the specified name is received.
+     * @param {object} connection - The connection object.
+     * @param {string} eventName - The name of the event to register.
+     * @param {function} callback - The callback function to be executed when an event with the specified name is received.
+     */
     function registerEvent (connection, eventName, callback){
         connection.receive((message) => {
             if (message.header.messageType == "EVENT" && message.body.eventName == eventName) {
