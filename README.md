@@ -6,7 +6,9 @@ DataBridge is a library for communication between scripts
 
 To incorporate this userscript library, include the following tag in your userscript metadata:
 
-`// @require     https://github.com/black-backdoor/DataBridge/raw/main/DataBridge.lib.user.js`
+```js
+// @require     https://github.com/black-backdoor/DataBridge/raw/main/DataBridge.lib.user.js
+```
 
 ## Documentation
 The documentation can be found [here](https://github.com/black-backdoor/DataBridge/blob/main/docs.md).
