@@ -185,3 +185,100 @@ debugMessageHook()
 > ### Returns
 >
 > None
+
+
+### Protocol
+- **Purpose**: Provides utilities to verify message formats, register message types, dispatch events, and handle event listeners.
+
+#### Methods:
+- `verifyMessage(message)`: Verifies if a message has a valid header structure.
+- `registerMessageType(connection, messageType, callback)`: Registers a callback function for a specific message type.
+- `dispatchEvent(connection, eventName, detail, receiver)`: Sends an event message to a specified receiver.
+- `registerEvent(connection, eventName, callback)`: Registers a callback function for a specific event name.
+
+---
+
+### verifyMessage Function
+
+```js
+verifyMessage()
+```
+>
+> ### Description
+>
+> Verifies if a message has a valid header structure.
+>
+> ### Parameters
+>
+> **(message)** *The Message to verify*
+>
+> ### Returns
+>
+> **(Return)** *Returns true if the message is valid, false otherwise.*
+
+
+
+### registerMessageType Function
+
+```js
+registerMessageType()
+```
+>
+> ### Description
+>
+> Registers a message type and sets a callback function to be executed when a message of that type is received.
+>
+> ### Parameters
+>
+> **(connection)** *The connection object*
+> **(messageType)** *String*
+> **(callback)** *The callback function to be executed when a message of the specified type is received.*
+>
+> ### Returns
+>
+> None
+
+
+
+### dispatchEvent Function
+
+```js
+dispatchEvent()
+```
+>
+> ### Description
+>
+> Dispatches an event with the specified event name and detail to the specified receiver.
+>
+> ### Parameters
+>
+> **(connection)** *The connection object*
+> **(eventName)** *The name of the event to dispatch.*
+> **(detail)** *The detail of the event*
+> **(receiver)** *The receiver of the event*
+>
+> ### Returns
+>
+> None
+
+
+
+### registerEvent Function
+
+```js
+registerEvent()
+```
+>
+> ### Description
+>
+> Registers an event and sets a callback function to be executed when an event with the specified name is received.
+>
+> ### Parameters
+>
+> **(connection)** *The connection object*
+> **(eventName)** *The name of the event to register*
+> **(callback)** *The callback function to be executed when an event with the specified name is received*
+>
+> ### Returns
+>
+> None
