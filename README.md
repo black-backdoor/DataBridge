@@ -1,5 +1,5 @@
 # DataBridge
-DataBridge is a library for communication between scripts
+DataBridge is a library for communication between userscripts
 
 
 ## Usage
@@ -32,4 +32,4 @@ Connection Types
 
 
 ## Get started
-I'm glad you're interested in using UserGui, welcome! To get started, please take a look at the [documentation](docs.md).
+I'm glad you're interested in using DataBridge, welcome! To get started, please take a look at the [documentation](docs.md).
