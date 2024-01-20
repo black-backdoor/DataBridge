@@ -186,6 +186,7 @@ debugMessageHook()
 >
 > None
 
+---
 
 ### Protocol
 - **Purpose**: Provides utilities to verify message formats, register message types, dispatch events, and handle event listeners.
