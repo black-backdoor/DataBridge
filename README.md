@@ -11,6 +11,8 @@ To incorporate this userscript library, include the following tag in your usersc
 ## Documentation
 The documentation can be found [here](https://github.com/black-backdoor/DataBridge/blob/main/docs.md).
 
+## Tools for Debugging
+You can find a list of debugging tools [here](https://github.com/black-backdoor/DataBridge/tree/main/tools).
 
 ## Todo
 - [x] Check for required script permissions and use alternatives if permissions are not granted
