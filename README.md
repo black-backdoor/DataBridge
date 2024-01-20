@@ -11,7 +11,7 @@ To incorporate this userscript library, include the following tag in your usersc
 ```
 
 ## Documentation
-The documentation can be found [here](https://github.com/black-backdoor/DataBridge/blob/main/docs.md).
+The documentation can be found [here](docs.md).
 
 ## Tools for Debugging
 You can find a list of debugging tools [here](https://github.com/black-backdoor/DataBridge/tree/main/tools).
@@ -29,3 +29,7 @@ Connection Types
 - [ ] CrossWindow | LocalStorage & GM Storage
 - [ ] SameOrigin | LocalStorage & GM Storage
 - [ ] CrossOrigin | GM Storage
+
+
+## Get started
+I'm glad you're interested in using UserGui, welcome! To get started, please take a look at the [documentation](docs.md).
