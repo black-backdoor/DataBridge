@@ -15,7 +15,7 @@ DataBridge is a JavaScript library designed to facilitate communication between 
     - [SystemProtocol](#systemprotocol)
     - [Tools](#tools)
 4. [Usage Examples](#usage-examples)
-5. [ToDo List](#todo-list)
+5. [Functions](#public-functions)
 
 
 ## Library Overview
@@ -33,7 +33,7 @@ Ensure that your userscript has the necessary permission to access `GM_info`. Th
 #### Methods:
 - `info()`: Returns an object containing metadata about the DataBridge library.
 
-
+---
 
 ### Connection Class
 - **Purpose**: Defines a `Connection` class to manage communication channels and facilitate message exchange between scripts.
@@ -44,7 +44,7 @@ Ensure that your userscript has the necessary permission to access `GM_info`. Th
 - `receive(callback)`: Registers a callback function to receive messages on the channel.
 - `debugMessageHook(callback)`: Registers a callback function to debug messages without validation.
 
-
+---
 
 ### Protocol
 - **Purpose**: Provides utilities to verify message formats, register message types, dispatch events, and handle event listeners.
@@ -55,7 +55,7 @@ Ensure that your userscript has the necessary permission to access `GM_info`. Th
 - `dispatchEvent(connection, eventName, detail, receiver)`: Sends an event message to a specified receiver.
 - `registerEvent(connection, eventName, callback)`: Registers a callback function for a specific event name.
 
-
+---
 
 ### defaultProtocol
 - **Purpose**: Implements system-related protocols such as PING-PONG mechanisms to maintain communication integrity.
@@ -67,6 +67,7 @@ Ensure that your userscript has the necessary permission to access `GM_info`. Th
 #### Methods:
 - `PING(connection, receiver)`: Sends a PING message to check connectivity
 
+---
 
 ## Usage Examples
 
@@ -95,3 +96,92 @@ connection.receive((message) => {
     console.log("Received Message:", message);
 });
 ```
+---
+
+# Public Functions
+
+## General Connection Functions
+
+### Connection Class
+- **Purpose**: Defines a `Connection` class to manage communication channels and facilitate message exchange between scripts.
+
+#### Methods:
+- `getChannelName()`: Returns the name of the communication channel.
+- `send(message)`: Sends a message through the specified channel.
+- `receive(callback)`: Registers a callback function to receive messages on the channel.
+- `debugMessageHook(callback)`: Registers a callback function to debug messages without validation.
+
+---
+
+```js
+getChannelName()
+```
+>
+> ### Description
+>
+> Returns the name of the communication channel.
+>
+> ### Parameters
+>
+> None
+>
+> ### Returns
+>
+> **(String)** *The Connection Name as an string.*
+
+
+### send Function
+
+```js
+send()
+```
+>
+> ### Description
+>
+> Sends a message through the specified channel.
+>
+> ### Parameters
+>
+> **(Array)** *The Message to send in a JSON like Array*
+>
+> ### Returns
+>
+> None
+
+
+### receive Function
+
+```js
+receive()
+```
+>
+> ### Description
+>
+> Registers a callback function to receive messages on the channel.
+>
+> ### Parameters
+>
+> **(Callback)** *The Function to call when a Message is received. The Callback Function is called with the received Message as a parameter.*
+>
+> ### Returns
+>
+> None
+
+
+### receive Function
+
+```js
+debugMessageHook()
+```
+>
+> ### Description
+>
+> Registers a callback function to debug messages. The received Messages are not validated.
+>
+> ### Parameters
+>
+> **(Callback)** *The Function to call when a Message is received. The Callback Function is called with the received Message as a parameter.*
+>
+> ### Returns
+>
+> None
