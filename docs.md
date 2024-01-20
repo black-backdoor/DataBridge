@@ -25,6 +25,36 @@ DataBridge aims to simplify communication between different parts of a web appli
 ## Requirements
 Ensure that your userscript has the necessary permission to access `GM_info`. This permission is crucial for retrieving information about the script, such as its name, version, and other details.
 
+
+## Usage Examples
+
+### Creating a Connection
+
+```javascript
+const connection = new Connection("channelName");
+```
+
+### Sending a Message
+```javascript
+connection.send({
+    header: {
+        sender: "SenderScript",
+        receiver: "ReceiverScript",
+        protocolVersion: "1.0",
+        messageType: "CREATE-YOUR-OWN-TYPE",
+    },
+    body: "what-ever-you-want-(every-datatype)",
+});
+```
+
+### Receiving a Message
+```javascript
+connection.receive((message) => {
+    console.log("Received Message:", message);
+});
+```
+---
+
 ## Components
 
 ### DataBridge Info
@@ -67,35 +97,6 @@ Ensure that your userscript has the necessary permission to access `GM_info`. Th
 #### Methods:
 - `PING(connection, receiver)`: Sends a PING message to check connectivity
 
----
-
-## Usage Examples
-
-### Creating a Connection
-
-```javascript
-const connection = new Connection("channelName");
-```
-
-### Sending a Message
-```javascript
-connection.send({
-    header: {
-        sender: "SenderScript",
-        receiver: "ReceiverScript",
-        protocolVersion: "1.0",
-        messageType: "CREATE-YOUR-OWN-TYPE",
-    },
-    body: "what-ever-you-want-(every-datatype)",
-});
-```
-
-### Receiving a Message
-```javascript
-connection.receive((message) => {
-    console.log("Received Message:", message);
-});
-```
 ---
 
 # Public Functions
