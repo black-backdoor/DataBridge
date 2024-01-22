@@ -10,12 +10,6 @@ To incorporate this userscript library, include the following tag in your usersc
 // @require     https://github.com/black-backdoor/DataBridge/raw/main/DataBridge.lib.user.js
 ```
 
-## Documentation
-The documentation can be found [here](docs.md).
-
-## Tools for Debugging
-You can find a list of debugging tools [here](https://github.com/black-backdoor/DataBridge/tree/main/tools).
-
 ## Todo
 - [x] Check for required script permissions and use alternatives if permissions are not granted
 - [ ] Allow for cross-window communication (using GM_setValue or local storage)
@@ -31,5 +25,9 @@ Connection Types
 - [ ] CrossOrigin | GM Storage
 
 
-## Get started
-I'm glad you're interested in using DataBridge, welcome! To get started, please take a look at the [documentation](docs.md).
+## Documentation
+The documentation can be found [here](docs.md).
+
+## Tools for Debugging
+You can find a list of debugging tools [here](https://github.com/black-backdoor/DataBridge/tree/main/tools).
+
