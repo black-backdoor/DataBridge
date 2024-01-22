@@ -140,7 +140,7 @@ class Connection {
 
 
     /**
-     * Set up a callback to receive messages.
+     * Registers a callback function to receive messages on the channel.
      * @param {function} callback - The callback function to handle received messages.
      */
     receive(callback) {       
@@ -167,7 +167,7 @@ class Connection {
 
 
     /**
-     * Set up a callback for debugging purposes without validating the message.
+     * Registers a callback function to debug messages. The received Messages are not validated.
      * @param {function} callback - The callback function to handle messages.
      */
     debugMessageHook(callback) {       
