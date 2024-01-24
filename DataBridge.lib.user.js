@@ -2,7 +2,7 @@
 const DataBridge = (function () {
     function info() {
         const name = "DataBridge";
-        const version = "1.3.0";
+        const version = "1.4.0";
         const author = "black-backdoor";
         const description = "DataBridge is a library for communication between scripts";
         const homepage = "https://github.com/black-backdoor/DataBridge/";
@@ -24,6 +24,23 @@ const DataBridge = (function () {
         // Check if the script is running in a userscript manager environment
         if (typeof GMinfo === "undefined") {
             throw new Error("DataBridge: Script is not running in a userscript manager environment | GMinfo is undefined");
+        }
+
+        checkPermissions();
+    }
+
+    function checkPermissions(){
+        const requiredPermissions = ["GM_info"];
+        const scriptPermissions = GMinfo?.script?.grant || [];
+
+        // console.log("Required Permissions:", requiredPermissions);
+        // console.log("Script Permissions:", scriptPermissions);
+
+        // Using a for...of loop to check for missing permissions
+        for (const requiredPermission of requiredPermissions) {
+            if (!scriptPermissions.includes(requiredPermission)) {
+                throw new Error(`DataBridge: Script does not have the required permissions | missing: ${requiredPermission} `);
+            }
         }
     }
 
