@@ -2,6 +2,8 @@
 DataBridge is a library for communication between userscripts
 
 
+# DEVELOPMENT HALTED 🛑
+
 ## Usage
 
 To incorporate this userscript library, include the following tag in your userscript metadata:
